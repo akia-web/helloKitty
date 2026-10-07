@@ -1,0 +1,17 @@
+enum FlowerColorType{
+    BASE
+    TEINTE
+    OMBRE
+}
+
+
+model DefaultColor {
+  id                  Int      @id @default(autoincrement())
+  name                String   @unique
+  color               String
+  colorType           FlowerColorType
+
+  flowerColors1 FlowerColor[] @relation("Color1")
+  flowerColors2 FlowerColor[] @relation("Color2")
+  flowers Flower[]
+}

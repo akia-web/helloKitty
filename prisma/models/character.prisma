@@ -1,0 +1,21 @@
+enum ObtainWith{
+    BASE_GAME
+    WHEATFLOUR_WONDERLAND
+    CITY_TOWN
+}
+
+model Character {
+  id                  Int      @id @default(autoincrement())
+  name                String   @unique
+  obtainWith          ObtainWith @default(BASE_GAME)
+  level               Int
+  favoriteGiftId      Int
+  receivedGiftId      Int
+  image               String
+  miniature           String?
+  bonus1              String
+  bonus2              String?
+  visitors Visitor[]
+  favoriteGift        Item @relation("FavoriteGift", fields: [favoriteGiftId], references: [id])
+  receivedGift        Item @relation("ReceivedGift", fields: [receivedGiftId], references: [id])
+}

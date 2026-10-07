@@ -1,0 +1,12 @@
+model FlowerUser {
+  id       Int @id @default(autoincrement())
+  userId    Int
+  flowerId Int
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  flower Flower @relation(fields: [flowerId], references: [id], onDelete: Cascade)
+
+  colors   FlowerColor[]
+
+  @@unique([userId, flowerId])
+}

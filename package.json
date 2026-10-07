@@ -1,0 +1,34 @@
+{
+  "name": "disney",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare && prisma generate"
+  },
+  "dependencies": {
+    "@nuxt/icon": "^2.4.1",
+    "@pinia/nuxt": "^1.0.1",
+    "@prisma/adapter-pg": "^7.9.1",
+    "@prisma/client": "^7.9.1",
+    "@tailwindcss/vite": "^4.3.3",
+    "bcrypt": "^6.0.0",
+    "cloudinary": "^2.10.0",
+    "nuxt": "^4.5.1",
+    "pg": "^8.22.0",
+    "pinia": "^4.0.2",
+    "prisma": "^7.9.1",
+    "sharp": "^0.35.4",
+    "tailwindcss": "^4.3.3",
+    "vue": "^3.5.40",
+    "vue-router": "^5.2.0"
+  },
+  "devDependencies": {
+    "@iconify-json/mdi-light": "^1.2.2",
+    "@types/bcrypt": "^6.0.0"
+  }
+}

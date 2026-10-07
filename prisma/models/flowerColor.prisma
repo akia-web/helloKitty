@@ -1,0 +1,33 @@
+enum Motif{
+    NONE
+    OMBRE
+    BORD
+    TACHETE
+    ALTERNATIF
+    RAYE
+    FRAGMENTE
+    ANNEAU
+    CONFETTI
+    GEL
+    FUSION
+    CRISTAL
+    COSMIQUE
+    IRISE
+    LUEUR
+    PAILLETTES
+    RAYON_DE_SOLEIL
+}
+
+
+
+model FlowerColor {
+    id                  Int      @id @default(autoincrement())
+    color1Id    Int
+    color2Id    Int?
+
+    motif Motif @default(NONE)
+
+    color1     DefaultColor @relation("Color1", fields: [color1Id], references: [id], onDelete: Cascade)
+    color2    DefaultColor? @relation("Color2", fields: [color2Id], references: [id], onDelete: Cascade)
+    flowerUsers FlowerUser[]
+}

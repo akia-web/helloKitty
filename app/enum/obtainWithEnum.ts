@@ -1,0 +1,5 @@
+export enum ObtainWithEnum {
+    BASE_GAME = "BASE_GAME",
+    WHEATFLOUR_WONDERLAND = "WHEATFLOUR_WONDERLAND",
+    CITY_TOWN = "CITY_TOWN"
+}

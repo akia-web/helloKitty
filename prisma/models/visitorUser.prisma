@@ -1,0 +1,12 @@
+model VisitorUser {
+  userId    Int
+  visitorId Int
+
+  isResident Boolean @default(false)
+  isFav      Boolean @default(false)
+
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  visitor Visitor @relation(fields: [visitorId], references: [id], onDelete: Cascade)
+
+  @@id([userId, visitorId])
+}

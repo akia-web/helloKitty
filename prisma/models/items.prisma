@@ -1,0 +1,8 @@
+model Item {
+  id                  Int      @id @default(autoincrement())
+  name                String   @unique
+  image               String
+  favoriteOf  Character[] @relation("FavoriteGift")
+  receivedBy  Character[] @relation("ReceivedGift")
+  giftBy Visitor[] @relation("Gift")
+}

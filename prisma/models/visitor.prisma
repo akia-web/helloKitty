@@ -1,0 +1,10 @@
+model Visitor {
+  id                  Int      @id @default(autoincrement())
+  name                String   @unique
+  image               String
+  characterId Int?
+  users VisitorUser[]
+  character   Character? @relation(fields: [characterId], references: [id])
+  giftId      Int
+  gift        Item @relation("Gift", fields: [giftId], references: [id])
+}

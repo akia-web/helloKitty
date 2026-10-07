@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  app_hello_kitty:
+    build: .
+    container_name: app_hello_kitty
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "3004:3000"       # expose l’API sur le serveur
+    networks:
+      - hello_kitty_network
+
+networks:
+  hello_kitty_network:
