@@ -34,9 +34,9 @@
                         <ClientOnly>
                             <Icon class="text-4xl text-pink " name="mdi-light:arrow-down" />
                         </ClientOnly> 
-                        <img :src="character.receivedGift.image" class="h-10" alt="">
+                        <img :src="character.receivedGift.image" class="h-10 w-10 object-contain" alt="">
                     </div>
-                    <img :src="character.image" class="h-25" alt="">
+                    <img :src="character.image" class="h-25 w-25 object-contain" alt="">
                 </div>
 
                 <div class="border-t border-t-pink">

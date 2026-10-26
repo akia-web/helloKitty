@@ -49,9 +49,9 @@
                                 <hr class="border border-pink" v-if="fish.description || fish.tinyDescription|| fish.regularDescription || fish.hugeDescription">
                                         <div>
                                                 <p v-if="fish.description"></p>
-                                                <p v-if="fish.tinyDescription" class="text-xs mb-1"><span class="font-semibold">•Petit :</span> {{ fish.tinyDescription }} </p>
-                                                <p v-if="fish.regularDescription" class="text-xs mb-1"><span class="font-semibold">•Moyen :</span> {{ fish.regularDescription }}</p>
-                                                <p v-if="fish.hugeDescription" class="text-xs"><span class="font-semibold">•Grand :</span> {{ fish.hugeDescription }}</p>
+                                                <p v-if="fish.tinyDescription" class="text-xs mb-1"><span class="font-semibold">•Nain :</span> {{ fish.tinyDescription }} </p>
+                                                <p v-if="fish.regularDescription" class="text-xs mb-1"><span class="font-semibold">•Normal :</span> {{ fish.regularDescription }}</p>
+                                                <p v-if="fish.hugeDescription" class="text-xs"><span class="font-semibold">•Géant :</span> {{ fish.hugeDescription }}</p>
                                         </div>
                                         
                                 </div>

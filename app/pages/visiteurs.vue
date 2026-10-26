@@ -82,9 +82,9 @@
             <div class="flex justify-around items-center p-2"
              @click="updateIsResidentIsFav(visitor as VisitorUserDto, false, true)">
                 <div class="flex w-[30%] h-full flex-col gap-2 justify-center">
-                    <img :src="getVisitor(visitor).gift.image" class="h-9 object-contain" alt="">
+                    <img :src="getVisitor(visitor).gift.image" class="h-9 w-9 object-contain" alt="">
                 </div>
-                <img :src="getVisitor(visitor).image" class="h-25" alt="">
+                <img :src="getVisitor(visitor).image" class="h-25 w-25 object-contain" alt="">
             </div>
             <div v-if="getVisitor(visitor).character" 
             class="flex gap-2 p-2 items-center">
