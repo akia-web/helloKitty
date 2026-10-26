@@ -16,4 +16,9 @@ export const navBarRoutes: navBarDto[] = [
         iconName: 'material-symbols-light:local-florist-outline',
         name: 'Fleurs'
     },
+    {
+        link: '/poissons',
+        iconName: 'energy-icons:fish-48',
+        name: 'Poissons'
+    },
 ]

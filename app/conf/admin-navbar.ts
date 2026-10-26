@@ -21,5 +21,15 @@ export const adminNavBarRoutes: navBarDto[] = [
         iconName: 'mdi-light:gift',
         name: 'Items'
     },
+    {
+        link: '/admin/poissons',
+        iconName: 'energy-icons:fish-48',
+        name: 'Poissons'
+    },
+    {
+        link: '/admin/region',
+        iconName: 'material-symbols:map-outline',
+        name: 'Région'
+    },
 
 ]

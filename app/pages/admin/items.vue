@@ -20,21 +20,21 @@
              <SearchBar v-model:elementTable="items"
                         type="item"/>
 
-            <div class="flex gap-4 flex-wrap justify-around">
-        <div v-for="item in items"
-            class="border rounded-lg min-w-50 max-w-50 bg-white"
-            @click="openModal('Modification', item)">
-            <div class="flex justify-center p-2.5 rounded-tl-lg rounded-tr-lg">
-                <p class="text-pink font-bold">{{ item.name }}</p>
-            </div>
-           
-            <div class="p-2.5 flex flex-col items-center">
-                <img :src="item.image" class="w-6.25" alt="">
-            </div>
+        <div class="flex gap-4 flex-wrap justify-around">
+            <div v-for="item in items"
+                class="border rounded-lg min-w-50 max-w-50 bg-white"
+                @click="openModal('Modification', item)">
+                <div class="flex justify-center p-2.5 rounded-tl-lg rounded-tr-lg">
+                    <p class="text-pink font-bold">{{ item.name }}</p>
+                </div>
             
-        </div>
+                <div class="p-2.5 flex flex-col items-center">
+                    <img :src="item.image" class="w-6.25" alt="">
+                </div>
+                
+            </div>
 
-    </div>
+        </div>
 </template>
 <script lang=ts setup>
 import type { ItemDto } from '~/interfaces/item.dto'

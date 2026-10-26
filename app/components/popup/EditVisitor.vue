@@ -22,6 +22,7 @@
                 <UiSelectOptions  title="Cadeau de l'habitant"
                                   column="image"
                                   id="select1"
+                                  :disabled="false"
                                   :selectedOption="selectedGift" 
                                   :table="items"
                                   @chooseOption="selectGift"/>
@@ -29,6 +30,7 @@
                 <UiSelectOptions  title="Ami de ..."
                                   column="miniature"
                                   id="select2"
+                                  :disabled="false"
                                   :selectedOption="selectedCharacter" 
                                   :table="characters"
                                   @chooseOption="selectCharacter"/>

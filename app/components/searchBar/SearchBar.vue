@@ -13,16 +13,18 @@
 
 import type { PropType } from 'vue'
 import type { CharacterDto } from '~/interfaces/characters-dto'
+import type { FishDto } from '~/interfaces/fish.dto'
 import type { FlowerUserDto } from '~/interfaces/flower-user.dto'
 import type { FlowerDto } from '~/interfaces/flower.dto'
 import type { ItemDto } from '~/interfaces/item.dto'
+import type { RegionDto } from '~/interfaces/region.dto'
 import type { VisitorUserDto } from '~/interfaces/visitor-user.dto'
 import type { VisitorDto } from '~/interfaces/visitor.dto'
 
 const props = defineProps({
-  elementTable: Array as PropType<CharacterDto[] | ItemDto[] | FlowerDto[]| VisitorUserDto[] | FlowerUserDto[]>,
+  elementTable: Array as PropType<CharacterDto[] | ItemDto[] | FlowerDto[]| VisitorUserDto[] | FlowerUserDto[]| RegionDto[] | FishDto[]>,
   type: {
-    type: String as PropType<'character' | 'item' | 'visitor' | 'flower' |'flower-user'| 'visitor-user'>,
+    type: String as PropType<'character' | 'item' | 'visitor' | 'flower' |'flower-user'| 'visitor-user'| 'region' | 'fish'>,
     required: true
   }
 })

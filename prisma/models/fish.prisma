@@ -1,0 +1,38 @@
+enum Rarity{
+  COMMON
+  UNCOMMON
+  RARE
+}
+
+enum WeatherReport{
+  ALL
+  SUNNY
+  RAIN
+  STARFALL
+  STEAM
+  SNOWFALL
+  FLOURFALL
+  MORNING
+  DAYTIME
+  EVENING
+  NIGHT
+}
+
+model Fish {
+  id                  Int      @id @default(autoincrement())
+  name                String   @unique
+  image               String
+  rarity              Rarity
+  url                 String
+  description         String?
+  tinyDescription     String?
+  regularDescription  String?
+  hugeDescription     String?
+  weatherReport WeatherReport[]
+  regionId            Int
+  region              Region @relation("RegionFish", fields: [regionId], references: [id])
+  bait1Id       Int?
+  bait1         Item? @relation("FishBait1", fields: [bait1Id], references: [id])
+  bait2Id       Int?
+  bait2         Item? @relation("FishBait2", fields: [bait2Id], references: [id])
+}

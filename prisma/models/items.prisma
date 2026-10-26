@@ -5,4 +5,6 @@ model Item {
   favoriteOf  Character[] @relation("FavoriteGift")
   receivedBy  Character[] @relation("ReceivedGift")
   giftBy Visitor[] @relation("Gift")
+  bait1ForFish Fish[] @relation("FishBait1")
+  bait2ForFish Fish[] @relation("FishBait2")
 }

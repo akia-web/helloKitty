@@ -4,18 +4,18 @@
             <NuxtLink to="/">
                 <div class="flex items-center gap-2 flex-col">
                 <ClientOnly>
-                    <Icon name="mdi-light:format-list-numbered" />
+                    <Icon name="mdi-light:format-list-numbered" class="text-xl" />
                 </ClientOnly>
-                <p>ToDo</p>
+                <p class="text-xs">ToDo</p>
                 </div>
             </NuxtLink>
             <NuxtLink v-for="item in navBarRoute"
             :to="item.link">
             <div class="flex items-center gap-2 flex-col">
                 <ClientOnly>
-                <Icon :name=item.iconName />
+                <Icon :name=item.iconName  class="text-xl"/>
                 </ClientOnly>   
-                <p>{{item.name}}</p>
+                <p class="text-xs">{{item.name}}</p>
             </div>
             </NuxtLink>
 
@@ -23,9 +23,9 @@
                 <NuxtLink :to="'/connexion'">
                     <div class="flex items-center gap-2 flex-col">
                         <ClientOnly>
-                            <Icon name="mdi-light:book" />
+                            <Icon name="mdi-light:book" class="text-xl"/>
                         </ClientOnly>
-                        <p>Login</p>
+                        <p class="text-xs">Login</p>
                     </div>
                 </NuxtLink>
       
@@ -34,16 +34,16 @@
 
                 <div class="flex items-center gap-2 flex-col ">
                                 <ClientOnly>
-                                <Icon @click="logout" name="cuida:power-outline" />
-                                <p>Logout</p>
+                                <Icon @click="logout" name="cuida:power-outline" class="text-xl" />
+                                <p class="text-xs">Logout</p>
                                 </ClientOnly>
                 </div>
                     <NuxtLink :to="'/admin/personnages'" v-if="auth.user.role ==='ADMIN'">
                         <div class="flex items-center gap-2 flex-col ">
                                             <ClientOnly>
-                                            <Icon name="mdi-light:view-dashboard" />
+                                            <Icon name="mdi-light:view-dashboard"  class="text-xl"/>
                                             </ClientOnly>   
-                                            <p>Dash</p>
+                                            <p class="text-xs">Dash</p>
                         </div>
                     </NuxtLink>
                 

@@ -28,6 +28,7 @@
                 <UiSelectOptions  title="Cadeau favoris"
                                   id="select1"
                                   column="image"
+                                  :disabled="false"
                                   :selectedOption="selectedFavoriteGift" 
                                   :table="items"
                                   @chooseOption="selectFavoriteGift"/>
@@ -35,6 +36,7 @@
                 <UiSelectOptions  title="Objet reçus"
                                   id="select2"
                                   column="image"
+                                  :disabled="false"
                                   :selectedOption="selectedReceivedGift" 
                                   :table="items"
                                   @chooseOption="selectReceivedGift"/>

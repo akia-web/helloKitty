@@ -15,6 +15,7 @@
                 <UiSelectOptions  title="fleure"
                 column="image"
                 id="select1"
+                :disabled="false"
                 :selectedOption="selectedFlower" 
                 :table="flowers"
                 @chooseOption="selectFlower"/>
