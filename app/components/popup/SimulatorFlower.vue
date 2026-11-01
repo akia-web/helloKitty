@@ -57,21 +57,18 @@
                     <div v-if="!value.error" class="flex gap-4 justify-center mt-4">
                         <div>
                             <div class="flex items-center gap-2">
-                                <img :src="value.flower1?.image" class="w-[30px]" alt="">
+                                <img :src="value.flower1?.image" class="w-7.5 h-7.5 object-contain" alt="">
                                 
                                 <div class="relative">
                                     <div  :style="{ backgroundColor: value.color1?.color1.color }"
-                                            class="border w-[30px] h-[30px] rounded-full">
+                                             class="border w-7.5 h-7.5 rounded-full text-center flex justify-center items-center">
+                                        <p v-if="!value.color1" class="mt-1">?</p>
                                     </div>
 
                                     <img :src="motifImages[`/assets/images/motifs/${value.color1?.motif}.webp`]" 
                                     class="border rounded-full w-3.75 absolute -top-0.75 -right-0.75"
                                     v-if="value.color1?.motif !== 'NONE'">
                                 </div>
-                            
-                            
-                            
-                            
                             </div>
                             <p class="text-sm text-right">{{ value.color1?.color1.name }}</p>
                         </div>
@@ -80,10 +77,12 @@
 
                         <div>
                             <div class="flex items-center gap-2">
-                                <img :src="value.flower2?.image" class="w-[30px]" alt="">
-                                <div  :style="{ backgroundColor: value.color2?value.color2.color1.color: 'white' }"
-                                class="border w-[30px] h-[30px] rounded-full text-center flex justify-center items-center">
+                                <img :src="value.flower2?.image" class="w-7.5 h-7.5 object-contain" alt="">
+                                <div class="relative"> 
+                                    <div  :style="{ backgroundColor: value.color2?value.color2.color1.color: 'white' }"
+                                            class="border w-7.5 h-7.5 rounded-full text-center flex justify-center items-center">
                                     <p class="mt-1" v-if="!value.color2" >?</p>
+                                    </div>
                                 </div>
                             </div>
                             <p class="text-sm text-right">{{ value.color2? value.color2.color1.name : 'Couleur libre'  }}</p>
@@ -93,9 +92,9 @@
 
                         <div>
                             <div class="flex items-center gap-2">
-                                <img :src="value.resultFlower?.image" class="w-[30px]" alt="">
+                                <img :src="value.resultFlower?.image" class="w-7.5 h-7.5 object-contain" alt="">
                                 <div  :style="{ backgroundColor: value.resultColor?.color }"
-                                class="border w-[30px] h-[30px] rounded-full">
+                                class="border w-7.5 h-7.5 rounded-full">
                                 </div>
                             </div>
                             <p class="text-sm text-right">{{ value.resultColor?.name }}</p>
@@ -176,7 +175,7 @@ const send = () => {
 
     if(!motif.value || motif.value === 'NONE'){
         getMixSteps(color1.value!.name,flowerUser!, resultFlower.value, colors.value, flowersUser.value )
-        console.log(resultFlower)
+        // console.log(resultFlower)
         
         // const colorsMixed: string[] = getColorToMix(color1.value?.name);
         // console.warn(colorsMixed)

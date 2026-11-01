@@ -69,11 +69,7 @@ export const getMixSteps = (
     flowersUser: FlowerUserDto[],
 ): ResultSimulatorFlowersDto[] => {
     // La couleur a déjà été obtenue précédemment
-    if (
-        steps.some(
-            step => step.resultColor?.name === desiredColor
-        )
-    ) {
+    if (steps.some(step => step.resultColor?.name === desiredColor)) {
         return steps
     }
 
@@ -251,7 +247,7 @@ const getColorTransferStep = (
             flowerUser.flower.id !== selectedFlower.flower.id &&
             flowerUser.colors.some(
                 color =>
-                    color.color1.name === desiredColor
+                    color.color1.name === desiredColor && color.motif !== 'NONE'
             )
     )
 
@@ -261,7 +257,7 @@ const getColorTransferStep = (
 
     const sourceColor = sourceFlower.colors.find(
         color =>
-            color.color1.name === desiredColor
+            color.color1.name === desiredColor && color.motif !== 'NONE'
     )
 
     if (!sourceColor) {
