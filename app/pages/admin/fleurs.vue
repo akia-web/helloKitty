@@ -31,11 +31,15 @@
                             @closeFlowerColorModal="handleCloseFlowerColorModal"/>
     </div>
 
-    <div class="flex gap-2">
-        <div v-for="color in flowersColor">
-                <div :style="{ backgroundColor: color.color }"
-                class="h-[25px] w-[25px] rounded-full shadow-sm border border-white"></div>
-            </div>
+    <div class="flex gap-2 flex-wrap mt-8">
+
+                    <div v-for="color in flowersColor">
+                        <div :style="{ backgroundColor: color.color, color: getTextColor(color.color) }"
+                         class="p-1.5 rounded-xl min-w-[50px] text-xs flex items-center justify-between"> 
+                            <span>{{ color.name }}</span> 
+                        </div>
+  
+                    </div>
     </div>
     
     <SearchBar v-model:elementTable="flowers"

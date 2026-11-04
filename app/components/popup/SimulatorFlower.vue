@@ -119,6 +119,8 @@ import type { ResultSimulatorFlowersDto } from '~/interfaces/result-simulator-fl
 
 const props = defineProps({
     title: String,
+    flower: Object as PropType<FlowerUserDto>,
+    searchColor: Object as PropType<DefaultColorsDto>
   });
 
 const emit = defineEmits(['closeModal']);
@@ -130,7 +132,6 @@ const selectedFlower = ref<FlowerDto>()
 const showResult = ref(false);
 const flowers = ref<FlowerDto[]>([])
 const flowersUser = ref<FlowerUserDto[]>([])
-const melangedColor = ['Corail', 'Orange', 'Vert citron', 'Vert',  'Bleu sarcelle', 'Indigo', 'Violet', 'Magenta', 'Rose pastel', 'Rosé', 'Pêche', 'Crème', 'Pistache', 'Menthe', 'Écume de mer', 'Nuage', 'Glace', 'Bigorneau', 'Lilas', 'Rose froid',  'Rose', 'Gris', 'Marron' ]
 const resultFlower = ref<ResultSimulatorFlowersDto[]>([])
 
 const showColor2 = () => {
@@ -174,47 +175,7 @@ const send = () => {
     let flowerUser: FlowerUserDto | undefined= flowersUser.value[indexFlowerUser]
 
     if(!motif.value || motif.value === 'NONE'){
-        getMixSteps(color1.value!.name,flowerUser!, resultFlower.value, colors.value, flowersUser.value )
-        // console.log(resultFlower)
-        
-        // const colorsMixed: string[] = getColorToMix(color1.value?.name);
-        // console.warn(colorsMixed)
-        // const getColor1 : boolean = flowerUser? flowerUser.colors.some(color => color.color1.name === colorsMixed[0]):false
-        // const getColor2 : boolean = flowerUser? flowerUser.colors.some(color => color.color1.name === colorsMixed[1]): false
-
-        // if(!getColor1 || !getColor2){
-        //     const previousColoredMixedColor1 = getColorToMix(colorsMixed[0])
-        //     const previousColoredMixedColor2 = getColorToMix(colorsMixed[1])
-        // }
-        
-        
-        
-        
-        
-    //     if(colorsMixed.length >0 && getColor1 && getColor2 && flowerUser ){     
-    //         const primaryColor = flowerUser.colors.find(element=> element.color1.name === colorsMixed[0])  
-    //         const secondaryColor = flowerUser.colors.find(element=> element.color1.name === colorsMixed[1])  
-    //         resultFlower.value.push(melangeColor(flowerUser, primaryColor!, secondaryColor!, color1.value! )) 
-    //     }else{
-    //         const motifFlowerWithDesiredColor = flowersUser.value?.find(element => element.colors.some(color => color.color1.color === color1.value?.color && color.motif !== 'NONE'))
-            
-    //         if(motifFlowerWithDesiredColor){
-    //             resultFlower.value.push(transferColor(flowersUser.value, color1.value!.name,flowerUser! ))
-    //         }else{
-    //             console.log(`J'ai pas la couleur `)
-    //             if(colorsMixed.length>0 &&!getColor1 && getColor2){
-    //                  resultFlower.value.push(transferColor(flowersUser.value, colorsMixed[0]!,flowerUser! ))
-    //             }
-
-    //             if(colorsMixed.length>0 &&!getColor1 && getColor2){
-    //                 resultFlower.value.push(transferColor(flowersUser.value, colorsMixed[1]!,flowerUser! ))
-    //             }
-
-
-    //             console.log(resultFlower)
-    //         }
-    //     }
-               
+        getMixSteps(color1.value!.name,flowerUser!, resultFlower.value, colors.value, flowersUser.value )               
     }
 
     showResult.value=true
@@ -222,11 +183,16 @@ const send = () => {
 
 
 onMounted(async () => {
+    console.warn(props.flower)
+    console.warn(props.searchColor)
+    if(props.flower && props.searchColor){
+        selectedFlower.value = props.flower.flower
+        color1.value = props.searchColor
+        
+    }
    colors.value = await $fetch<DefaultColorsDto[]>(`/api/default-color/all`)
    flowersUser.value = await $fetch<FlowerUserDto[]>(`/api/flower-user/all`)
    flowers.value = flowersUser.value.map(element => element.flower)
-//    flowers.value = await $fetch<FlowerDto[]>(`/api/flower/all`)
-
 })
 
 </script>

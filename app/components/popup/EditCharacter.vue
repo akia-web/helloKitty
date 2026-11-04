@@ -1,6 +1,5 @@
 <template>
-    <div
-    class="fixed inset-0 flex items-center justify-center bg-gray-500/80 z-10 ">
+    <div class="fixed inset-0 flex items-center justify-center bg-gray-500/80 z-10 ">
         <div class="bg-white rounded shadow w-[60%]">
             <div class="flex gap-2 items-center justify-between bg-background text-pink p-4">
                 <h1>{{ title }}</h1>

@@ -42,7 +42,7 @@ const tableFlowerMotif: FlowerMotifEnum[] = Object.values(FlowerMotifEnum)
 
 
 const emit = defineEmits<{
-    chooseOption: [item: string]
+    chooseOption: [item: FlowerMotifEnum]
 }>()
 
 const motifImages = import.meta.glob<string>(
@@ -62,7 +62,7 @@ const handleClickOutside = (event: MouseEvent) => {
 }
 
 const selectOption = (item: string) => {
-    emit('chooseOption', item)
+    emit('chooseOption', item as FlowerMotifEnum)
     open.value = false
 }
 

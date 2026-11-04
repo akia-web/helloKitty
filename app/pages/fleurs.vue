@@ -30,7 +30,14 @@
                 <PopupSimulatorFlower v-if="showSimulatorModal"
                             :title="titleModal" 
                             :flower="selectedFlower"
+                            :searchColor="searchColor"
                             @closeModal="handleCloseSimultatorModal"/>
+                
+                <PopupDetailFlower v-if="showFlowerModal"
+                            :flower="selectedFlower"
+                            :searchColor="searchColor"
+                            @closeModal="handleCloseFlowerModal($event)"
+                            @simulateFlower="simulateFlower($event)"/>
     </div>
 
 
@@ -62,15 +69,16 @@
     <div class="grid grid-cols-[repeat(auto-fill,168px)] justify-center gap-4">
             <div v-for="flower in elementTable"
             class="border rounded-lg w-42 bg-white/90 border-gold shadow-md">
-            <div  class="relative min-h-17.5 flex items-center justify-around bg-gray-pink rounded-tl-lg rounded-tr-lg border-b border-b-pink">
-                <p class="text-center pt-7 text-pink font-bold">
+            <div  class="relative min-h-17.5 flex items-center justify-around bg-gray-pink rounded-tl-lg rounded-tr-lg border-b cursor-pointer border-b-pink"
+            @click="showFlower(flower as FlowerUserDto)">
+                <p class="text-center pt-7 text-pink font-bold underline">
                       {{ getFlower(flower).name }}
                 </p>
             </div>
 
            
-            <div class="flex justify-around items-center p-2 border-b border-pink">
-                <img :src="getFlower(flower).image" class="h-25" alt="">
+            <div class="flex justify-around items-center p-2 border-b border-pink cursor-pointer hover:bg-gray-200">
+                <img @click="showFlower(flower as FlowerUserDto)" :src="getFlower(flower).image" class="h-25 " alt="">
             </div>
 
             <div v-if="auth.user" class="flex flex-wrap items-center p-2 gap-2" >
@@ -110,6 +118,7 @@
 </template>
 <script lang="ts" setup>
 import { FlowerMotifEnum } from '~/enum/flowerMotifEnum';
+import type { DefaultColorsDto } from '~/interfaces/default-colors.dto';
 import type { FlowerUserDto } from '~/interfaces/flower-user.dto';
 import type { FlowerDto } from '~/interfaces/flower.dto';
 
@@ -117,9 +126,20 @@ const auth = useAuthStore()
 const showModal = ref(false)
 const showSimulatorModal = ref(false)
 const showColorModal = ref(false)
+const showFlowerModal = ref(false)
+const searchColor = ref<DefaultColorsDto|undefined>(undefined)
 const titleModal = ref('')
 const elementTable  = ref<FlowerDto[] | FlowerUserDto[]>([])
 const selectedFlower=ref<FlowerUserDto>()
+
+const simulateFlower = (event: DefaultColorsDto | undefined) =>{
+    console.warn(event)
+    showModal.value = false
+    showColorModal.value = false;
+    showFlowerModal.value = false;
+    showSimulatorModal.value = true     
+    searchColor.value = event
+}
 
 const motifImages = import.meta.glob<string>(
   '~/assets/images/motifs/*.webp',
@@ -128,6 +148,13 @@ const motifImages = import.meta.glob<string>(
     import: 'default'
   }
 )
+
+const showFlower = (flower: FlowerUserDto) => {
+    if(auth.user){
+        showFlowerModal.value = true
+    }
+    selectedFlower.value = flower
+}
 
 const openModal = (title: string):void =>{
     titleModal.value = title 
@@ -142,7 +169,8 @@ const openSimulatorModal = (title: string):void =>{
 }
 
 const openColorModal = (flower:any) => {
-    titleModal.value = `Ajouter une couleur pour ${flower.name}` 
+    console.warn(flower)
+    titleModal.value = `Ajouter une couleur pour ${flower.flower.name}` 
     showColorModal.value = true 
     selectedFlower.value= flower as FlowerUserDto
 }
@@ -168,6 +196,14 @@ const handleCloseModal = async (response? : {success: boolean}):Promise<void> =>
     showModal.value = false
 
     if(response?.success ){
+        elementTable.value = await $fetch<FlowerDto[]>(`/api/flower-user/all`)
+    }
+}
+
+const handleCloseFlowerModal = async (event: any):Promise<void> => {
+    console.warn(event)
+    showFlowerModal.value = false
+    if(!event){
         elementTable.value = await $fetch<FlowerDto[]>(`/api/flower-user/all`)
     }
 }
