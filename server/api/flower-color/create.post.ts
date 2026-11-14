@@ -5,17 +5,26 @@ export default defineEventHandler(async (event) => {
     const user = await getUserFromSession(event)
 
     if (!user) {
-        throw new Error('Utilisateur non trouvé')
+        throw createError({
+            statusCode: 404,
+            statusMessage: 'Utilisateur non trouvé'
+        })
     }
 
     const body = await readBody(event)
 
     if (!body.color1 || !body.flowerUser) {
-        throw new Error('Données manquantes')
+        throw createError({
+            statusCode: 400,
+            statusMessage: 'Données manquantes'
+        })
     }
 
     if (body.color2 === undefined && canHaveColor2(body.motif)) {
-        throw new Error('Couleur manquante')
+        throw createError({
+            statusCode: 400,
+            statusMessage: 'Couleur manquantes'
+        })
     }
 
     if (!canHaveColor2(body.motif) && body.color2) {
@@ -23,7 +32,10 @@ export default defineEventHandler(async (event) => {
     }
 
     if (body.checked || body.checked === undefined) {
-        throw new Error('Erreur')
+        throw createError({
+            statusCode: 400,
+            statusMessage: 'Données manquantes'
+        })
     }
 
     if (!body.motif) {
@@ -45,13 +57,28 @@ export default defineEventHandler(async (event) => {
 
     })
 
-    if (body.motif === Motif.NONE && searchFlowerUser?.colors.some(color => color.color1.id === body.color1.id)) {
-        throw new Error('Couleur déjà existante pour cette fleure')
+    if (!searchFlowerUser) {
+        throw createError({
+            statusCode: 404,
+            statusMessage: 'Données manquantes'
+        })
     }
 
-    if (!searchFlowerUser) {
-        throw new Error('Vous ne possedez pas la fleure')
+    if (searchFlowerUser.colors.some(color =>
+        color.color1.id === body.color1.id &&
+        color.motif === body.motif &&
+        (
+            color.color2?.id === body.color2?.id
+        )
+    )) {
+
+        throw createError({
+            statusCode: 409,
+            statusMessage: 'Couleur déjà existante pour cette fleur'
+        })
     }
+
+
 
     const flower = await prisma.flowerUser.update({
         where: {

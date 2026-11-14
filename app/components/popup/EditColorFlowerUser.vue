@@ -44,6 +44,7 @@
 
 <script lang="ts" setup>
 import type { PropType } from 'vue';
+import { FlowerMotifEnum } from '~/enum/flowerMotifEnum';
 import type { DefaultColorsDto } from '~/interfaces/default-colors.dto';
 import type { FlowerColorDto } from '~/interfaces/flower-color.dto';
 import type { FlowerUserDto } from '~/interfaces/flower-user.dto';
@@ -58,7 +59,7 @@ const emit = defineEmits(['closeModal']);
 const colors = ref<DefaultColorsDto[]>([])
 const color1 = ref()
 const color2 = ref()
-const motif = ref()
+const motif = ref<FlowerMotifEnum>(FlowerMotifEnum.NONE)
 
 
 const form = reactive({
@@ -76,13 +77,13 @@ const selectColor2= (color:DefaultColorsDto) => {
   color2.value = color
 }
 
-const selectMotif= (element:string) => {
+const selectMotif= (element:FlowerMotifEnum) => {
   motif.value = element
 }
 
 
 const showColor2 = () => {
-   return canHaveColor2(motif.value)
+    return canHaveColor2(motif.value)  
 }
 
 onMounted(async () => {
@@ -106,11 +107,18 @@ const send = async () => {
 
     
   if(!props.flowerColor){
-   const save : FlowerUserDto = await $fetch<FlowerUserDto>('/api/flower-color/create', {
-      method: 'POST',
-      body: data
-    })
-    close(save)
+    try{
+        const save : FlowerUserDto = await $fetch<FlowerUserDto>('/api/flower-color/create', {
+        method: 'POST',
+        body: data
+      })
+      close(save)
+
+    }catch(e:any){
+
+    }
+
+
 
     }else{
 

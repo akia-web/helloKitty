@@ -1,5 +1,5 @@
 <template>
-    <h1 class="text-lg text-pink font-bold">Personnages</h1>
+    <h1 class="text-lg text-pink font-bold">Fleurs</h1>
     <div v-if="auth.user"
             class="flex flex-row-reverse reactive">
         <button class="border flex items-center p-2.5 gap-2 bg-white"
